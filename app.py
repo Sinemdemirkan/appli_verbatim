@@ -25,11 +25,10 @@ if st.button('Simple'):
     else:
         # st.info('Wait for it...')
         result = requests.get(f"{BASE_URL}simple_predict", params={"text":txt}).json()
-        st.write(result)
-        # level = result["naive_bayes_level"]
-        # cefr=corresponding[level]
-        # st.write(cefr)
-        # st.balloons()
+        level = result["estimated_level"]
+        cefr=corresponding[level]
+        st.write(cefr)
+        st.balloons()
 
     # print is visible in the server output, not in the page
         print('button clicked!')
