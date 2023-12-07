@@ -50,8 +50,15 @@ st.set_page_config(
 )
 
 #Load custom css sheet
-with open( "style.css" ) as css:
-    st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
+st.markdown("""<style>
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono');
+html, body, [class*="css"] {
+    font-family: 'Fira Mono', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #091747;
+}
+            </style>""" , unsafe_allow_html=True)
 
 
 #Sidebar
