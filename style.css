@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono');
+
+html, body, [class*="css"] {
+    font-family: 'Fira Mono', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #091747;
+}
