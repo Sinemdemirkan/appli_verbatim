@@ -1,6 +1,8 @@
 import streamlit as st
 from PIL import Image
 import requests
+import base64
+
 
 BASE_URL = "https://ml-dl-dark-sorcery-65ddmnvcwa-ew.a.run.app/"
 corresponding = {0: "a1", 1: "a2", 2: "b1", 3: "b2", 4: "c1", 5: "c2"}
@@ -62,22 +64,31 @@ html, body, [class*="css"] {
 
 
 #Sidebar
-st.sidebar.markdown("<div style='font-size: 25px'>Menu</div>", unsafe_allow_html=True)
+st.sidebar.markdown("<div style='font-size: 25px; font-family: Fira Mono;'>Menu</div>", unsafe_allow_html=True)
 st.sidebar.text("About")
 st.sidebar.text("Who for?")
 
 
 # Header and introductory content
 st.markdown("<div align='center', style='font-size: 70px; font-family: Fira Mono;'>verbatim_</span>",unsafe_allow_html=True)
-st.markdown("Your Language Guide 🇬🇧/🇺🇸", unsafe_allow_html=True) # à aligner au milieu
-st.markdown("Find texts adapted to your level,<span style='color: #00b050'> read smart</span>", unsafe_allow_html=True)
+file_ = open("streamlit_vid.gif", "rb")
+contents = file_.read()
+data_url = base64.b64encode(contents).decode("utf-8")
+file_.close()
+
+st.markdown(
+    f"<div><img src='data:image/gif;base64,{data_url}' width='100%'></div>",
+    unsafe_allow_html=True,
+)
+
+st.markdown("<div style='font-family: Fira Mono;'>Find texts adapted to your level,<span style='color: #00b050'> read smart</span></div> \n", unsafe_allow_html=True)
 
 
 # Text inputer
 txt = st.text_area("Please insert your text here 👇 (at least 110 words): ", value=default_text_C1, height=400)
 st.write('Word count:', len(txt.split()))
 
-st.text("Estimate you text level:")
+st.text("Estimate your text level:")
 
 
 col1, col2, col3, col4, col5 = st.columns(5)
