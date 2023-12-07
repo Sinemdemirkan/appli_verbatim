@@ -49,16 +49,18 @@ st.set_page_config(
     page_icon="📚",
 )
 
-#Load custom css sheet
-st.markdown("""<style>
+# Load custom css sheet
+st.markdown("""
+<style>
 @import url('https://fonts.googleapis.com/css?family=Fira+Mono');
-html, body, [class*="css"] {
+body {
     font-family: 'Fira Mono', sans-serif;
     font-size: 18px;
     font-weight: 500;
     color: #091747;
 }
-            </style>""" , unsafe_allow_html=True)
+</style>
+""", unsafe_allow_html=True)
 
 
 #Sidebar
