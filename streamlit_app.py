@@ -1,3 +1,4 @@
+
 import streamlit as st
 from PIL import Image
 import requests
@@ -23,8 +24,7 @@ Must give us pause—there's the respect
 That makes calamity of so long life.
 """
 
-default_text_B1 = """
-Hagrid raised a gigantic fist and knocked three times
+default_text_B1 = """Hagrid raised a gigantic fist and knocked three times
 on the castle door.
 The door swung open at once. A tall, black-haired
 witch in emerald-green robes stood there. She had a very
@@ -40,6 +40,8 @@ and a magnificent marble staircase facing them led to
 the upper floors.
 
 """
+
+text = 'default_text_B1'
 
 cefr='def'
 
@@ -57,9 +59,6 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css?family=Fira+Mono');
 body {
     font-family: 'Fira Mono', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    color: #091747;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -67,8 +66,8 @@ body {
 
 #Sidebar
 st.sidebar.markdown("<div style='font-size: 25px; font-family: Fira Mono;'>Menu</div>", unsafe_allow_html=True)
-st.sidebar.text("About")
-st.sidebar.text("Who for?")
+st.sidebar.markdown("<div style='font-size: 16px; font-family: Fira Mono;'>About</div>", unsafe_allow_html=True)
+st.sidebar.markdown("<div style='font-size: 16px; font-family: Fira Mono;'>Who for?</div>", unsafe_allow_html=True)
 
 
 # Header and introductory content
@@ -82,15 +81,38 @@ st.markdown(
     f"<div><img src='data:image/gif;base64,{data_url}' width='100%'></div>",
     unsafe_allow_html=True,
 )
+st.markdown(" ")
+st.markdown("<div style='font-family: Fira Mono; font-size: 16px'>Find texts adapted to your level,<span style='color: #00b050'> read smart  <br/></span></div> \n", unsafe_allow_html=True)
+st.markdown(" ")
 
-st.markdown("<div style='font-family: Fira Mono;'>Find texts adapted to your level,<span style='color: #00b050'> read smart</span></div> \n", unsafe_allow_html=True)
+st.markdown("<div style='font-family: Fira Mono; font-size: 16px'>Please insert your text here 👇 (at least 110 words):</div> \n", unsafe_allow_html=True)
+st.markdown(" ")
+st.markdown(" ")
 
+
+col1, col2, col3 = st.columns(3)
+
+
+with col2:
+    if st.button('Shakespeare'):
+        text = 'default_text_C1'
+with col3:
+    if st.button('Harry Potter'):
+        text = 'default_text_B1'
 
 # Text inputer
-txt = st.text_area("Please insert your text here 👇 (at least 110 words): ", value=default_text_C1, height=400)
-st.write('Word count:', len(txt.split()))
-
-st.text("Estimate your text level:")
+if text == 'default_text_C1':
+    txt = st.text_area(label='', value=default_text_C1, height=400)
+    st.markdown(f"<div style='font-family: Fira Mono; font-size: 16px'>Word count: <span style='color: #00b050'>{len(txt.split())}</span>", unsafe_allow_html=True)
+    st.markdown(" ")
+    st.markdown("<div style='font-family: Fira Mono; font-size: 16px'>Estimate your text level:</div>", unsafe_allow_html=True)
+    st.markdown(" ")
+else:
+    txt = st.text_area(label='', value=default_text_B1, height=400)
+    st.markdown(f"<div style='font-family: Fira Mono; font-size: 16px'>Word count: <span style='color: #00b050'>{len(txt.split())}</span>", unsafe_allow_html=True)
+    st.markdown(" ")
+    st.markdown("<div style='font-family: Fira Mono; font-size: 16px'>Estimate your text level:</div>", unsafe_allow_html=True)
+    st.markdown(" ")
 
 
 col1, col2, col3, col4, col5 = st.columns(5)
@@ -109,7 +131,6 @@ with col2:
             result = requests.get(f"{BASE_URL}ml_predict", params={"text": txt}).json()
             level = result["estimated_level"]
             cefr = corresponding[level]
-            st.balloons()
             print('Simple button clicked!')
 
 # Composite button
@@ -122,7 +143,6 @@ with col4:
             result = requests.get(f"{BASE_URL}dl_predict", params={"text": txt}).json()
             level = result["estimated_level"]
             cefr = corresponding[level]
-            st.balloons()
             print('Composite button clicked!')
 
 
