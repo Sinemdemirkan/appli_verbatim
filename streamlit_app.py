@@ -84,21 +84,26 @@ st.markdown(
 st.markdown(" ")
 st.markdown("<div style='font-family: Fira Mono; font-size: 16px'>Find texts adapted to your level,<span style='color: #00b050'> read smart  <br/></span></div> \n", unsafe_allow_html=True)
 st.markdown(" ")
+st.markdown(" ")
 
+slider_values = [0,1]
+slider_strings = ['Shakespeare','Harry Potter']
+#n_text = st.slider('',0,1)
+def stringify(i:int = 0) -> str:
+    return slider_strings[i]
+n_text = st.select_slider('Select the text for the demo: ',
+                    options = slider_values,
+                    value =0,
+                    format_func = stringify)
+st.markdown(" ")
 st.markdown("<div style='font-family: Fira Mono; font-size: 16px'>Please insert your text here 👇 (at least 110 words):</div> \n", unsafe_allow_html=True)
 st.markdown(" ")
-st.markdown(" ")
 
 
-col1, col2, col3 = st.columns(3)
-
-
-with col2:
-    if st.button('Shakespeare'):
-        text = 'default_text_C1'
-with col3:
-    if st.button('Harry Potter'):
-        text = 'default_text_B1'
+if n_text == 0:
+    text = 'default_text_C1'
+if n_text == 1 :
+    text = 'default_text_B1'
 
 # Text inputer
 if text == 'default_text_C1':
@@ -107,7 +112,7 @@ if text == 'default_text_C1':
     st.markdown(" ")
     st.markdown("<div style='font-family: Fira Mono; font-size: 16px'>Estimate your text level:</div>", unsafe_allow_html=True)
     st.markdown(" ")
-else:
+if text == 'default_text_B1':
     txt = st.text_area(label='', value=default_text_B1, height=400)
     st.markdown(f"<div style='font-family: Fira Mono; font-size: 16px'>Word count: <span style='color: #00b050'>{len(txt.split())}</span>", unsafe_allow_html=True)
     st.markdown(" ")
@@ -118,9 +123,7 @@ else:
 col1, col2, col3, col4, col5 = st.columns(5)
 
 
-
-
-# Simple button
+# ML button
 
 with col2:
     if st.button('machine learning!'):
@@ -133,7 +136,7 @@ with col2:
             cefr = corresponding[level]
             print('Simple button clicked!')
 
-# Composite button
+# DL button
 with col4:
     if st.button('deep learning!'):
         len_txt = len(txt.split())
