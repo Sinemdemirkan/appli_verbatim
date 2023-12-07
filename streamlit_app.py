@@ -68,7 +68,7 @@ st.sidebar.text("Who for?")
 
 
 # Header and introductory content
-st.markdown("<div align='center', style='font-size: 70px;'>verbatim_</span>",unsafe_allow_html=True)
+st.markdown("<div align='center', style='font-size: 70px; font-family: Fira Mono;'>verbatim_</span>",unsafe_allow_html=True)
 st.markdown("Your Language Guide 🇬🇧/🇺🇸", unsafe_allow_html=True) # à aligner au milieu
 st.markdown("Find texts adapted to your level,<span style='color: #00b050'> read smart</span>", unsafe_allow_html=True)
 
