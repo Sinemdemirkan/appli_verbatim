@@ -3,7 +3,7 @@ from PIL import Image
 import requests
 
 BASE_URL = "https://ml-dl-dark-sorcery-65ddmnvcwa-ew.a.run.app/"
-corresponding = {0: "A1", 1: "A2", 2: "B1", 3: "B2", 4: "C1", 5: "C2"}
+corresponding = {0: "a1", 1: "a2", 2: "b1", 3: "b2", 4: "c1", 5: "c2"}
 
 default_text_C1 = """To be, or not to be, that is the question:
 Whether 'tis nobler in the mind to suffer
